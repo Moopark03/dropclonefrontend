@@ -1,4 +1,5 @@
 export default {
+    MAX_ATTACHMENT_SIZE: 1000,
     s3: {
       REGION: "us-west-1",
       BUCKET: "cs172projectonefiles"
