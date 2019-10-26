@@ -2,17 +2,17 @@ import React, { useRef, useState } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
-import "./NewFile.css";
+import "./NewNote.css";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
 
-export default function NewFile(props) {
+export default function NewNote(props) {
   const file = useRef(null);
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   function validateForm() {
-    return content.length < 1000;
+    return content.length > 0;
   }
 
   function handleFileChange(event) {
@@ -33,26 +33,26 @@ export default function NewFile(props) {
     setIsLoading(true);
   
     try {
-      const attachment = file.current
-        ? await s3Upload(file.current)
-        : null;
-
-      await loadFile({ content, attachment });
-      props.history.push("/");
-    } catch (e) {
-      alert(e);
-      setIsLoading(false);
-    }
+        const attachment = file.current
+          ? await s3Upload(file.current)
+          : null;
+    
+        await createNote({ content, attachment });
+        props.history.push("/");
+      } catch (e) {
+        alert(e);
+        setIsLoading(false);
+      }
   }
   
-  function loadFile(note) {
+  function createNote(note) {
     return API.post("notes", "/notes", {
       body: note
     });
   }
 
   return (
-    <div className="NewFile">
+    <div className="NewNote">
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="content">
           <FormControl
@@ -73,7 +73,7 @@ export default function NewFile(props) {
           isLoading={isLoading}
           disabled={!validateForm()}
         >
-          Upload
+          Create
         </LoaderButton>
       </form>
     </div>

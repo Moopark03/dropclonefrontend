@@ -1,12 +1,12 @@
 export default {
-    MAX_ATTACHMENT_SIZE: 1000,
+    MAX_ATTACHMENT_SIZE: 10000,
     s3: {
-      REGION: "us-west-1",
-      BUCKET: "cs172projectonefiles"
+      REGION: "us-west-2",
+      BUCKET: "projectone172files"
     },
     apiGateway: {
-      REGION: "us-west-1",
-      URL: "https://wqwisrgy5c.execute-api.us-west-1.amazonaws.com/prod"
+      REGION: "us-west-2",
+      URL: "https://0ska19b8q7.execute-api.us-west-2.amazonaws.com/prod"
     },
     cognito: {
       REGION: "us-west-2",

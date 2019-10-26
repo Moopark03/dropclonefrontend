@@ -34,16 +34,16 @@ export default function Home(props) {
   function renderNotesList(notes) {
     return [{}].concat(notes).map((note, i) =>
       i !== 0 ? (
-        <LinkContainer key={note.fileID} to={`/notes/${note.fileID}`}>
+        <LinkContainer key={note.fileID} to={`/file/${note.fileID}`}>
           <ListGroupItem header={note.content.trim().split("\n")[0]}>
             {"Created: " + new Date(note.createdAt).toLocaleString()}
           </ListGroupItem>
         </LinkContainer>
       ) : (
-        <LinkContainer key="new" to="/notes/new">
+        <LinkContainer key="new" to="/file/new">
           <ListGroupItem>
             <h4>
-              <b>{"\uFF0B"}</b> Upload new file
+              <b>{"\uFF0B"}</b> Upload a new file
             </h4>
           </ListGroupItem>
         </LinkContainer>
@@ -55,14 +55,14 @@ export default function Home(props) {
     return (
       <div className="lander">
         <h1>Dropbox Clone</h1>
-        <p>UPLOAD SOMETHING YOU BIHHHHH</p>
+        <p>UPLOAD A FILE BIHHH</p>
       </div>
     );
   }
 
   function renderNotes() {
     return (
-      <div className="files">
+      <div className="notes">
         <PageHeader>Your Files</PageHeader>
         <ListGroup>
           {!isLoading && renderNotesList(notes)}
